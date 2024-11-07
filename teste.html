@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alternador de Relatórios Power BI</title>
+    <style>
+        /* Estilo para ocupar a página inteira */
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100%;
+        }
+        iframe {
+            width: 100%;
+            height: 100vh;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Contêiner para o iframe -->
+    <iframe id="reportFrame" allowFullScreen="true"></iframe>
+
+    <script>
+        // URLs dos relatórios do Power BI
+        const reports = [
+            "https://app.powerbi.com/reportEmbed?reportId=61605749-1d94-43e3-81b9-f8216f7d1eee&autoAuth=true&ctid=bfdb6695-839e-4254-b2fe-ea06ca48397e",
+            "https://app.powerbi.com/reportEmbed?reportId=ad54dcd1-b685-410f-b568-a58fa9e1b22a&autoAuth=true&ctid=bfdb6695-839e-4254-b2fe-ea06ca48397e"
+        ];
+
+        let currentReportIndex = 0; // Índice do relatório atual
+
+        // Função para alternar os relatórios
+        function switchReport() {
+            const iframe = document.getElementById("reportFrame");
+            iframe.src = reports[currentReportIndex];
+            currentReportIndex = (currentReportIndex + 1) % reports.length;
+        }
+
+        // Alterna o relatório a cada 10 segundos
+        setInterval(switchReport, 10000);
+
+        // Carrega o primeiro relatório na inicialização
+        switchReport();
+    </script>
+
+</body>
+</html>
